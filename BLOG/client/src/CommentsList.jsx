@@ -1,32 +1,19 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-const CommentsList = ({postid}) => {
-    const [comments, setComments] = useState([]);
+const CommentsList = ({ postid, comments }) => {
+    if (!comments) return null; // safeguard
 
-    useEffect(() => {
-        const fetchComments = async () => {
-            try {
-                const res = await axios.get(`http://localhost:5001/posts/${postid}/comments`);
-                const comments = res.data;
-                setComments(comments);
-            }
-            catch (error) {
-
-            }
-        };
-        fetchComments();
-    }, []);
-
-    const renderedComments = comments.map((comment) => {
-        return <li key={comment.id}>{comment.content}</li>;
-    });
+    const filteredComments = comments.filter(c => c.postId === postid);
 
     return (
         <ul>
-            {renderedComments}
+            {filteredComments.map(comment => (
+                <li key={comment.id}>{comment.content}</li>
+            ))}
         </ul>
     );
-}
+};
+
 
 export default CommentsList;

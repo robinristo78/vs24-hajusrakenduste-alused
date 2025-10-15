@@ -3,31 +3,17 @@ import axios from "axios";
 import CommentsList from "./CommentsList";
 import CommentCreate from "./CommentCreate";
 
-const PostList = () => {
-    const [posts, setPosts] = useState([]);
+const PostList = ({ posts, comments, refreshPosts }) => {
 
-    useEffect(() => {
-        const fetchPosts = async() => {
-            try {
-                const res = await axios.get('http://localhost:5000/posts');
-                const posts = res.data;
-                setPosts(posts);
-            }
-            catch (error) {
-                console.error(error);
-            }
-        };
-        fetchPosts();
-    }, []);
 
-    console.log(posts);
+    // console.log(posts);
 
     const postsForRender = posts.map(post => (
         <div className="card" style={{ width: '100%', marginBottom: '20px' }} key={post.id}>
             <div className="card-body">
                 <h3>{post.title}</h3>
-                <CommentsList postid={post.id} />
-                <CommentCreate postid={post.id} />
+                <CommentsList postid={post.id} comments={comments}  />
+                <CommentCreate postid={post.id} refreshPosts={refreshPosts} />
             </div>
         </div>
     ));

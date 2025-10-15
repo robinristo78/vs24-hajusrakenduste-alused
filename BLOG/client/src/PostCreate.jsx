@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react';
 
-const PostCreate =  () => {
+const PostCreate =  ({ refreshPosts }) => {
     const [title, setTitle] = useState('');
 
     const onChange = (event) => {
@@ -12,6 +12,7 @@ const PostCreate =  () => {
         event.preventDefault();
         await axios.post('http://localhost:5000/posts', {title});
         setTitle('');
+        refreshPosts();
     }
 
     return (

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 
-const CommentCreate = ({postid}) => {
+const CommentCreate = ({postid, refreshPosts}) => {
     const [content, setContent] = useState('');
 
     const onChange = (event) => {
@@ -12,7 +12,7 @@ const CommentCreate = ({postid}) => {
         event.preventDefault();
         await axios.post(`http://localhost:5001/posts/${postid}/comments`, {content});
         setContent('');
-
+        refreshPosts();
     };
 
     return (
