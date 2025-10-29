@@ -33,9 +33,12 @@ app.post('/posts', async (req, res) => {
 });
 
 app.post('/events', (req, res) => {
-    console.log('Received Event:', req.body);
+    // console.log('Received Event:', req.body);
     res.json({ });
 });
 
 const PORT = 5000;
-app.listen(PORT, () => {console.log(`Posts server is running on http://localhost:${PORT}`)});
+app.listen(PORT, () => {
+    console.log('posts service');
+    console.log(`server is running on http://localhost:${PORT}/`)
+});

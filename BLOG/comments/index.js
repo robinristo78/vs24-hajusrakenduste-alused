@@ -38,9 +38,12 @@ app.post('/posts/:id/comments', async (req, res) => {
 });
 
 app.post('/events', (req, res) => {
-    console.log('Received Event:', req.body);
+    // console.log('Received Event:', req.body);
     res.json({ });
 });
 
 const PORT = 5001;
-app.listen(PORT, () => {console.log(`Comments server is running on http://localhost:${PORT}`)});
+app.listen(PORT, () => {
+    console.log('comments service');
+    console.log(`server is running on http://localhost:${PORT}/`)
+});

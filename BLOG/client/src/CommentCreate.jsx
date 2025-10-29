@@ -18,7 +18,7 @@ const CommentCreate = ({postid, refreshPosts}) => {
     return (
         <div>
             <form onSubmit={onSubmit}>
-                <div className="form-group">
+                <div className="form-group m-3">
                     <label>New Comment</label>
                     <input 
                         value={content}

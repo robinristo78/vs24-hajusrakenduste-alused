@@ -12,13 +12,14 @@ const PostCreate =  ({ refreshPosts }) => {
         event.preventDefault();
         await axios.post('http://localhost:5000/posts', {title});
         setTitle('');
-        refreshPosts();
+        await new Promise(resolve => setTimeout(resolve, 300));
+        await refreshPosts();
     }
 
     return (
         <div>
             <form onSubmit={onSubmit}>
-                <div className='form-group'>
+                <div className='form-group m-3'>
                     <label>Title</label>
                     <input 
                         value={title}

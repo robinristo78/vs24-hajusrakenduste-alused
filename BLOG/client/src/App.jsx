@@ -6,12 +6,12 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const App = () => {
-    const [posts, setPosts] = useState([]);
+    const [posts, setPosts] = useState({});
     const [comments, setComments] = useState([]);
 
     const fetchPosts = async () => {
         try {
-            const res = await axios.get('http://localhost:5000/posts');
+            const res = await axios.get('http://localhost:5002/posts');
             setPosts(res.data);
         } catch (err) {
             console.error(err);
@@ -47,7 +47,7 @@ const App = () => {
 
     const refreshAll = async () => {
         await fetchPosts();
-        await fetchComments();
+        // await fetchComments();
     };
 
     useEffect(() => {
