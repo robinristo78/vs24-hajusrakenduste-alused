@@ -13,5 +13,7 @@ RUN npm install
 # Kopeerime ülejäänud rakenduse failid
 COPY . .
 
+EXPOSE 4000 
+
 # Määrame käsu, mis käivitab rakenduse
 CMD ["npm", "start"]

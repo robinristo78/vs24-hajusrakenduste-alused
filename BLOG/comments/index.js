@@ -25,7 +25,7 @@ app.post('/posts/:id/comments', async (req, res) => {
     postComments.push(comment);
 
     try {
-        await axios.post('http://localhost:5005/events', {
+        await axios.post('http://event-bus:4005/events', {
             type: 'CommentCreated',
             data: comment
         });
@@ -42,7 +42,7 @@ app.post('/events', (req, res) => {
     res.json({ });
 });
 
-const PORT = 5001;
+const PORT = 4001;
 app.listen(PORT, () => {
     console.log('comments service');
     console.log(`server is running on http://localhost:${PORT}/`)

@@ -22,7 +22,7 @@ app.post('/posts', async (req, res) => {
     };
     posts.push(post);
 
-    axios.post('http://localhost:5005/events', {
+    axios.post('http://event-bus:4005/events', {
         type: 'PostCreated',
         data: post
     }).catch((err) => {
@@ -37,7 +37,7 @@ app.post('/events', (req, res) => {
     res.json({ });
 });
 
-const PORT = 5000;
+const PORT = 4000;
 app.listen(PORT, () => {
     console.log('posts service');
     console.log(`server is running on http://localhost:${PORT}/`)

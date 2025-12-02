@@ -28,7 +28,7 @@ app.post('/events', (req, res) => {
     res.json({ });
 });
 
-const PORT = 5002;
+const PORT = 4002;
 app.listen(PORT, () => {
     console.log('query service');
     console.log(`server is running on http://localhost:${PORT}/`)
