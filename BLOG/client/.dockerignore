@@ -1,0 +1,13 @@
+# Jäta välja lokaalselt installeeritud Node sõltuvused
+node_modules
+
+# Jäta välja Dockeri enda failid
+Dockerfile
+.dockerignore
+
+# Jäta välja git-kontrolli failid
+.git
+.gitignore
+
+# Jäta välja logid või ajutised andmed
+*.log

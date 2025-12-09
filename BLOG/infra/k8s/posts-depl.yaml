@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: posts-depl
+spec:
+  # Hoiab klastris käigus ühte posts Pod'i
+  replicas: 1
+  selector:
+    matchLabels:
+      app: posts
+  template:
+    metadata:
+      labels:
+        app: posts
+    spec:
+      containers:
+      - name: posts
+        # Kasutab sinu Docker Hubi pilti
+        image: robinristo78/posts:latest 
+        ports:
+        # Pordile 4000, millel teenus konteineri sees kuulab
+        - containerPort: 4000

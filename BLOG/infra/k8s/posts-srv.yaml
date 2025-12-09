@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: posts
+spec:
+  # NodePort lubab meil Postmani kaudu väljastpoolt ligi pöörduda.
+  type: NodePort 
+  selector:
+    # Seob Service Pod'idega, millel on label 'app: posts'
+    app: posts 
+  ports:
+    - name: posts
+      protocol: TCP
+      # Service'i port klastri sees (nt event-bus pöördub posts-srv:4000)
+      port: 4000
+      # Suunab liikluse konteineri pordile 4000
+      targetPort: 4000

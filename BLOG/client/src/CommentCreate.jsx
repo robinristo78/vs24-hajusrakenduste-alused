@@ -10,7 +10,8 @@ const CommentCreate = ({postid, refreshPosts}) => {
 
     const onSubmit = async (event) => {
         event.preventDefault();
-        await axios.post(`http://localhost:5001/posts/${postid}/comments`, {content});
+        // Uus URL: posts.com, Ingress suunab /posts/ID/comments õigesti comments teenusesse
+        await axios.post(`http://posts.com/posts/${postid}/comments`, {content}); 
         setContent('');
         refreshPosts();
     };

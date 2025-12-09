@@ -10,7 +10,8 @@ const PostCreate =  ({ refreshPosts }) => {
 
     const onSubmit = async (event) => {
         event.preventDefault();
-        await axios.post('http://localhost:5000/posts', {title});
+        // Uus URL: posts.com ja teekond on posts/create (nagu me koodis ja Ingressis parandasime)
+        await axios.post('http://posts.com/posts/create', {title}); 
         setTitle('');
         await new Promise(resolve => setTimeout(resolve, 300));
         await refreshPosts();

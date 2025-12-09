@@ -1,0 +1,57 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-srv
+  annotations:
+    # JÄTA AINULT NEED:
+    nginx.ingress.kubernetes.io/use-regex: "true"
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: posts.com
+      http:
+        paths:
+          # 1. Kommentaaride loomine (ImplementationSpecific on OK)
+          - path: /posts/([^/]+)/comments
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: comments
+                port:
+                  number: 4001
+          
+          # 2. Postituse loomine
+          - path: /posts/create
+            pathType: Prefix
+            backend:
+              service:
+                name: posts
+                port:
+                  number: 4000
+          
+          # 3. Kogu Lugemine
+          - path: /posts
+            pathType: Prefix
+            backend:
+              service:
+                name: query
+                port:
+                  number: 4002
+
+          # 4. Staatilised failid, JS, CSS, Pildid (Selle reegli lisamine võib lahendada MIME viga)
+          - path: /assets/
+            pathType: Prefix
+            backend:
+              service:
+                name: client
+                port:
+                  number: 80
+          
+          # 5. KÕIGE VIIMANE: Frontend ja kõik muu
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: client
+                port:
+                  number: 80
