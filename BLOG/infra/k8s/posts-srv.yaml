@@ -3,8 +3,7 @@ kind: Service
 metadata:
   name: posts
 spec:
-  # NodePort lubab meil Postmani kaudu väljastpoolt ligi pöörduda.
-  type: NodePort 
+  type: ClusterIP
   selector:
     # Seob Service Pod'idega, millel on label 'app: posts'
     app: posts 
